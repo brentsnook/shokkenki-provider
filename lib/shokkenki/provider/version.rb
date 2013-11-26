@@ -1,5 +1,7 @@
 module Shokkenki
-  module Version
-    STRING = '0.0.0'
+  module Provider
+    module Version
+      STRING = '0.0.2'
+    end
   end
 end
