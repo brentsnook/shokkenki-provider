@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'faraday'
   s.add_runtime_dependency 'rack-test'
   s.add_runtime_dependency 'jsonpath'
-  s.add_runtime_dependency 'shokkenki-support', '0.0.2'
+  s.add_runtime_dependency 'shokkenki-support', '0.0.4'
 
   s.add_development_dependency 'rake', '~> 10.0.0'
   s.add_development_dependency 'rspec', '~> 2.14.0'
