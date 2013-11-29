@@ -1,4 +1,4 @@
-# Shokkenki Provider
+# Shokkenki Provider [![Build Status](https://secure.travis-ci.org/brentsnook/shokkenki-provider.png?branch=master)](http://travis-ci.org/brentsnook/shokkenki-provider)
 
 Allows providers to redeem (verify) [Shokkenki consumer-driven contracts](https://github.com/brentsnook/shokkenki).
 
