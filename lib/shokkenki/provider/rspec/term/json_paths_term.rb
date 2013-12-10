@@ -15,6 +15,8 @@ module Shokkenki
                     @actual_values = @actual_values.map do |value|
                       JsonPath.on(value, json_path)
                     end.flatten
+
+                    fail 'No matching values found' if @actual_values.empty?
                   end
 
                   term.verify_within self
