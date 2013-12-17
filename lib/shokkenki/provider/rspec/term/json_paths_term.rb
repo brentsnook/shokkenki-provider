@@ -7,7 +7,7 @@ module Shokkenki
         module JsonPathsTerm
           def verify_within context
             term = self
-            context.describe 'json value' do
+            context.describe 'json' do
               term.value.each do |json_path, term|
                 describe json_path do
 

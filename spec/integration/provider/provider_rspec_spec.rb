@@ -16,7 +16,7 @@ My Consumer
     status
       is 200
     body
-      json value
+      json
         $.message
           matches /(?-mix:cold day.*5 degrees)/
 OUTPUT

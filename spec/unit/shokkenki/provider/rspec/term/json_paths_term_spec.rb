@@ -42,8 +42,8 @@ describe Shokkenki::Provider::RSpec::Term::JsonPathsTerm do
         subject.verify_within example_context
       end
 
-      it "creates a context of 'json value'" do
-        expect(example_context).to have_received(:describe).with('json value')
+      it "creates a context of 'json'" do
+        expect(example_context).to have_received(:describe).with('json')
       end
 
       it "creates an inner context for each JSON path'" do
