@@ -28,5 +28,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'shokkenki-support', '~> 0.0.4'
 
   s.add_development_dependency 'rake', '~> 10.0.0'
-  s.add_development_dependency 'rspec', '~> 2.14.0'
+  s.add_development_dependency 'cucumber'
+  s.add_development_dependency 'relish'
 end

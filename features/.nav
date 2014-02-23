@@ -1,0 +1,7 @@
+- configuration:
+  - specifying_ticket_location.feature
+  - registering_providers.feature
+  - defining_fixtures.feature
+- running:
+  - generating_rspec_examples.feature
+  - filtering.feature
