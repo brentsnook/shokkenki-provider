@@ -3,5 +3,5 @@
   - registering_providers.feature
   - defining_fixtures.feature
 - running:
-  - generating_rspec_examples.feature
+  - redeeming_a_ticket.feature
   - filtering.feature
