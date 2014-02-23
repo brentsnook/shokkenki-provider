@@ -1,6 +1,6 @@
 Feature: Redeeming a ticket
 
-  Shokkenki redeems a ticket by generating RSpec examples to verify each of the response criteria found in each example. The examples are then excercised as part of a normal RSpec run.
+  Shokkenki redeems a ticket by generating RSpec examples to verify each of the response criteria found in each interaction. The examples are then excercised as part of a normal RSpec run.
 
   Each interaction is converted into a new RSpec context and each term into an example. This allows for a descriptive spec outlining each part of the response.
 
