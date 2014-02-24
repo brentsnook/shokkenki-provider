@@ -17,7 +17,7 @@ end
 
 desc 'Push features to shokkenki project site for current version of the shokkenki provider'
 task :relish do
-  sh "relish push shokkenki/shokkenki-provider:#{Shokkenki::Provider::Version::STRING}"
+  sh "relish push shokkenki/shokkenki-provider:#{Shokkenki::Provider::Version::STRING.split('.')[0..1].join('.')}"
 end
 
 task :default => [:spec]
