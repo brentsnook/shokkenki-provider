@@ -6,7 +6,7 @@ Feature: Specifying ticket location
 
   - a single file
   - a directory - all JSON files under the directory will be read
-  - a URI - a JSON representation of a single ticket
+  - a URI - a JSON representation of an array of tickets
   - a callable object (such as a [Proc](http://www.ruby-doc.org/core-2.1.0/Proc.html)) - the object will be called to return an array of `Shokkenki::Provider::Model::Ticket` objects
 
   Scenario: Tickets read from tickets directory by default
@@ -234,48 +234,50 @@ Feature: Specifying ticket location
             is 200
       """
 
-  Scenario: Single ticket location specified as a URI
+  Scenario: Multiple ticket location specified as a URI
     Given a server is running at "http://localhost:8346" that will return the following ticket JSON:
       """
-      {
-        "consumer": {
-          "name": "consumer",
-          "label": "Consumer"
-        },
-        "provider": {
-          "name": "provider",
-          "label": "Provider"
-        },
-        "interactions": [
-          {
-            "label": "greeting",
-            "request": {
-              "type": "hash",
-              "value": {
-                "path": {
-                  "type": "string",
-                  "value": "/greeting"
-                },
-                "method": {
-                  "type": "string",
-                  "value": "get"
+      [
+        {
+          "consumer": {
+            "name": "consumer",
+            "label": "Consumer"
+          },
+          "provider": {
+            "name": "provider",
+            "label": "Provider"
+          },
+          "interactions": [
+            {
+              "label": "greeting",
+              "request": {
+                "type": "hash",
+                "value": {
+                  "path": {
+                    "type": "string",
+                    "value": "/greeting"
+                  },
+                  "method": {
+                    "type": "string",
+                    "value": "get"
+                  }
                 }
-              }
-            },
-            "response": {
-              "type": "hash",
-              "value": {
-                "status": {
-                  "type": "number",
-                  "value": 200
+              },
+              "response": {
+                "type": "hash",
+                "value": {
+                  "status": {
+                    "type": "number",
+                    "value": 200
+                  }
                 }
-              }
-            },
-            "time": "2013-11-05T08:22:34Z"
-          }
-        ],
-        "version": "0.0.0"
-      }
+              },
+              "time": "2013-11-05T08:22:34Z"
+            }
+          ],
+          "version": "0.0.0"
+        }
+      ]
       """
     And a file named "spec/provider.spec" with:
       """
