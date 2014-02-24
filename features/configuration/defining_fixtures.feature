@@ -6,6 +6,8 @@ Feature: Defining fixtures
 
   Fixture definitions can be paired with blueprint tools like [Machinist](https://github.com/notahat/machinist) or [Factory Girl](https://github.com/thoughtbot/factory_girl) to establish data easily.
 
+  You may also often need to refer to entity IDs in your paths. You can pass entity IDs through as part of the fixture arguments and ensure that the database is clean using [Database Cleaner](http://github.com/bmabey/database_cleaner) or some other method.
+
   Scenario: Define a provider fixture with standard arguments
     Given a ticket named "tickets/consumer-provider.json" including the following interaction:
       """
