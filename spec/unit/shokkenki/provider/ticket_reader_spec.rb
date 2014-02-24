@@ -10,7 +10,7 @@ describe Shokkenki::Provider::TicketReader do
       allow(Shokkenki::Provider::Model::Ticket).to receive(:from_hash).with(ticket_json).and_return ticket
     end
 
-    let(:ticket_json) { {'ticket' => 'json'} }
+    let(:ticket_json) { {:ticket => 'json'} }
     let(:tickets_json) { [ticket_json] }
     let(:ticket) { double 'ticket' }
 

@@ -16,7 +16,7 @@ module Shokkenki
         end
 
         def self.from_json json
-          from_hash(JSON.parse(json).symbolize_keys)
+          from_hash(JSON.parse(json, :symbolize_names => true))
         end
 
         def self.from_hash hash

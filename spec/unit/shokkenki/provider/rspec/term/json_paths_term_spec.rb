@@ -22,7 +22,7 @@ describe Shokkenki::Provider::RSpec::Term::JsonPathsTerm do
       allow(inner_context).to receive(:describe) do |&block|
         inner_context.instance_eval &block
       end
-      allow(subject).to receive(:value).and_return('$.first.second.third' => term)
+      allow(subject).to receive(:value).and_return(:'$.first.second.third' => term)
       allow(inner_context).to receive(:before).with(:each) do |&block|
         inner_context.instance_eval &block
       end
@@ -47,7 +47,7 @@ describe Shokkenki::Provider::RSpec::Term::JsonPathsTerm do
       end
 
       it "creates an inner context for each JSON path'" do
-        expect(inner_context).to have_received(:describe).with('$.first.second.third')
+        expect(inner_context).to have_received(:describe).with(:'$.first.second.third')
       end
 
       it 'verifies each term within the inner context' do

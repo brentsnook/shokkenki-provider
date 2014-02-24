@@ -13,7 +13,7 @@ module Shokkenki
 
                   before(:each) do
                     @actual_values = @actual_values.map do |value|
-                      JsonPath.on(value, json_path)
+                      JsonPath.on(value, json_path.to_s)
                     end.flatten
 
                     fail 'No matching values found' if @actual_values.empty?

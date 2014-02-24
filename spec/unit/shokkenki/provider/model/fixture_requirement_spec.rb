@@ -5,9 +5,9 @@ describe Shokkenki::Provider::Model::FixtureRequirement do
   context 'created from a hash' do
     let(:requirement) do
       Shokkenki::Provider::Model::FixtureRequirement.from_hash(
-        'name' => 'stuff exists',
-        'arguments' => {
-          'stuff1' => 'stuff1 value'
+        :name => 'stuff exists',
+        :arguments => {
+          :stuff1 => 'stuff1 value'
         }
       )
     end
@@ -16,7 +16,7 @@ describe Shokkenki::Provider::Model::FixtureRequirement do
       expect(requirement.name).to eq('stuff exists')
     end
 
-    it 'has arguments that use symbolic keys' do
+    it 'has arguments' do
       expect(requirement.arguments[:stuff1]).to eq('stuff1 value')
     end
   end

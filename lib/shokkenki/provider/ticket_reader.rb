@@ -19,7 +19,7 @@ module Shokkenki
 
       def parse_from_remote resource
         open(resource) do |f|
-          JSON.parse(f.read).map { |h| Shokkenki::Provider::Model::Ticket.from_hash h}
+          JSON.parse(f.read, :symbolize_names => true).map { |h| Shokkenki::Provider::Model::Ticket.from_hash h}
         end
       end
 
