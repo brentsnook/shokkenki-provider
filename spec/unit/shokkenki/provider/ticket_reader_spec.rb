@@ -16,9 +16,9 @@ describe Shokkenki::Provider::TicketReader do
 
     context 'when the given location is callable' do
 
-      let(:proc) { lambda { [ticket] } }
+      let(:proc) { lambda { "[#{ticket_json.to_json}]" } }
 
-      it 'calls the location to return a collection of tickets' do
+      it 'calls the location to return a collection of ticket JSON' do
         expect(subject.read_from(proc)).to eq([ticket])
       end
 
@@ -56,7 +56,7 @@ describe Shokkenki::Provider::TicketReader do
         end
       end
 
-      it 'reads the location to return a JSON array of tickets and parses them' do
+      it 'reads the location to return a JSON array of ticket JSON and parses it' do
         expect(subject.read_from('http://tickets.com')).to eq([ticket])
       end
 

@@ -8,7 +8,7 @@ module Shokkenki
     class TicketReader
 
       def read_from location
-        location.respond_to?(:call) ? location.call : parse_from(location)
+        location.respond_to?(:call) ? parse_tickets_json(location.call) : parse_from(location)
       end
 
       private
@@ -19,8 +19,12 @@ module Shokkenki
 
       def parse_from_remote resource
         open(resource) do |f|
-          JSON.parse(f.read, :symbolize_names => true).map { |h| Shokkenki::Provider::Model::Ticket.from_hash h}
+          parse_tickets_json f.read
         end
+      end
+
+      def parse_tickets_json json
+        JSON.parse(json, :symbolize_names => true).map { |h| Shokkenki::Provider::Model::Ticket.from_hash h }
       end
 
       def parse_from_local resource

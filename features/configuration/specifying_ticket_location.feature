@@ -174,8 +174,9 @@ Feature: Specifying ticket location
       end
 
       tickets_proc = lambda do
+        %Q{
         [
-          Shokkenki::Provider::Model::Ticket.json(%Q{{
+          {
             "consumer": {
               "name": "consumer",
               "label": "Consumer"
@@ -213,8 +214,9 @@ Feature: Specifying ticket location
               }
             ],
             "version": "0.0.0"
-          }})
+          }
         ]
+        }
       end
 
       Shokkenki.provider.configure do
