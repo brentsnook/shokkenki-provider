@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9'
 
   s.add_runtime_dependency 'rspec'
-  s.add_runtime_dependency 'activesupport'
+  s.add_runtime_dependency 'activesupport', '>= 3.0.0'
   s.add_runtime_dependency 'faraday'
   s.add_runtime_dependency 'rack-test'
   s.add_runtime_dependency 'jsonpath'
