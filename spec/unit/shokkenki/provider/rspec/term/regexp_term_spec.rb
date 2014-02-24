@@ -30,7 +30,7 @@ describe Shokkenki::Provider::RSpec::Term::RegexpTerm do
     end
 
     it 'names the assertion using the value of the term, including the extra crap from Regexp.to_s' do
-      expect(example_context).to have_received(:it).with('matches /(?-mix:99 problems)/')
+      expect(example_context).to have_received(:it).with('matches /99 problems/')
     end
 
     # stubtastic - can't think of a better way to test this though

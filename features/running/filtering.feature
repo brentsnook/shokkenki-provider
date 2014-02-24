@@ -94,7 +94,7 @@ Feature: Filtering Shokkenki Provider Examples
               "value": {
                 "$.message" : {
                   "type": "regexp",
-                  "value": "(?-mix:hi)"
+                  "value": "hi"
                 }
               }
             }

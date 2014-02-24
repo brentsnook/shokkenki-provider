@@ -8,7 +8,7 @@ describe Shokkenki::Provider::Model::Fixture do
 
   context 'when created' do
     it 'asserts that the establisher has an arity of 0 or 1 only' do
-      message = 'Fixture establisher for name pattern /(?-mix:name)/ must only accept zero or one argument.'
+      message = 'Fixture establisher for name pattern /name/ must only accept zero or one argument.'
       expect{Shokkenki::Provider::Model::Fixture.new(/name/, lambda{|first, second| })}.to raise_error(message)
     end
   end

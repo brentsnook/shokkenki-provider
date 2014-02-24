@@ -32,7 +32,7 @@ Feature: Showing the backtrace
               "value": {
                 "$.message" : {
                   "type": "regexp",
-                  "value": "(?-mix:hi)"
+                  "value": "hi"
                 }
               }
             }

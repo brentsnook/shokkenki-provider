@@ -34,7 +34,7 @@ Feature: Redeeming a ticket
               "value": {
                 "$.message" : {
                   "type": "regexp",
-                  "value": "(?-mix:hi)"
+                  "value": "hi"
                 }
               }
             }
@@ -65,6 +65,6 @@ Feature: Redeeming a ticket
           body
             json
               $.message
-                matches /(?-mix:hi)/
+                matches /hi/
       """
 

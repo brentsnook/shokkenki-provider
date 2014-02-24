@@ -34,7 +34,7 @@
             "value": {
               "$.message" : {
                 "type": "regexp",
-                "value": "(?-mix:cold day.*5 degrees)"
+                "value": "cold day.*5 degrees"
               }
             }
           }

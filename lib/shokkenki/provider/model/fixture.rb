@@ -23,7 +23,7 @@ module Shokkenki
         private
 
         def validate!
-          message = "Fixture establisher for name pattern /#{@name_pattern}/ must only accept zero or one argument."
+          message = "Fixture establisher for name pattern #{@name_pattern.inspect} must only accept zero or one argument."
           raise message unless @establisher.arity <= 1
         end
 
