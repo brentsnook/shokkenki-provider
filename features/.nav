@@ -5,3 +5,5 @@
 - running:
   - redeeming_a_ticket.feature
   - filtering.feature
+- troubleshooting:
+  - showing_the_backtrace.feature

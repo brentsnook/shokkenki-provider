@@ -24,3 +24,5 @@ Shokkenki::Term::StringTerm.send :include, Shokkenki::Provider::RSpec::Term::Str
 Shokkenki::Term::NumberTerm.send :include, Shokkenki::Provider::RSpec::Term::NumberTerm
 Shokkenki::Term::RegexpTerm.send :include, Shokkenki::Provider::RSpec::Term::RegexpTerm
 Shokkenki::Term::JsonPathsTerm.send :include, Shokkenki::Provider::RSpec::Term::JsonPathsTerm
+
+require_relative 'rspec/rspec_configuration'
