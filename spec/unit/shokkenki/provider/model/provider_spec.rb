@@ -34,20 +34,53 @@ describe Shokkenki::Provider::Model::Provider do
 
   context 'establishing fixtures' do
 
-    let(:first_fixture) { double(:first_fixture).as_null_object }
+    let(:first_fixture) { double(:first_fixture, :name => 'first fixture name').as_null_object }
 
-    let(:second_fixture) { double(:second_fixture).as_null_object }
-    let(:required_fixture) { double(:required_fixture) }
+    let(:second_fixture) { double(:second_fixture, :name => 'second fixture name').as_null_object }
+    let(:required_fixture) { double(:required_fixture, :name => 'fixy') }
 
     before do
       subject.fixtures << first_fixture
       subject.fixtures << second_fixture
-      subject.establish [required_fixture]
     end
 
-    it 'establishes each fixture' do
-      expect(first_fixture).to have_received(:establish).with(required_fixture)
-      expect(first_fixture).to have_received(:establish).with(required_fixture)
+    context 'when no fixtures match the required fixture' do
+
+      before do
+        allow(first_fixture).to receive(:matches?).with(required_fixture).and_return(false)
+        allow(second_fixture).to receive(:matches?).with(required_fixture).and_return(false)
+      end
+
+      it 'fails with an error message' do
+        expect{subject.establish [required_fixture]}.to raise_exception("No fixture found to match 'fixy': Did you define one in the provider configuration?")
+      end
+    end
+
+    context 'when multiple fixtures match the required fixture' do
+      before do
+        allow(first_fixture).to receive(:matches?).with(required_fixture).and_return(true)
+        allow(second_fixture).to receive(:matches?).with(required_fixture).and_return(true)
+      end
+
+      it 'fails with an error message mentioning the matched fixtures' do
+        expect{subject.establish [required_fixture]}.to raise_exception("Multiple fixtures found to match 'fixy' (first fixture name, second fixture name): Do you need to make your fixture matchers stricter?")
+      end
+    end
+
+    context 'when a single fixture matches the required fixture' do
+
+      before do
+        allow(first_fixture).to receive(:matches?).with(required_fixture).and_return(true)
+        allow(second_fixture).to receive(:matches?).with(required_fixture).and_return(false)
+
+        subject.establish [required_fixture]
+      end
+
+      it 'establishes the matching fixture' do
+        expect(first_fixture).to have_received(:establish).with(required_fixture)
+        expect(second_fixture).to_not have_received(:establish)
+      end
+
     end
   end
 end

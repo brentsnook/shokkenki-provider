@@ -12,6 +12,43 @@ describe Shokkenki::Provider::Model::Fixture do
       expect{Shokkenki::Provider::Model::Fixture.new(/name/, lambda{|first, second| })}.to raise_error(message)
     end
   end
+
+  describe 'name' do
+
+    let(:name_pattern) { /patter(n)/ }
+
+    it 'is the name pattern regex' do
+      expect(subject.name).to eq('/patter(n)/')
+    end
+  end
+
+  context 'matching a required fixture' do
+    let(:required_fixture) do
+      double(:required_fixture,
+        :name => 'match'
+      )
+    end
+
+    context 'when the required fixture name matches the name pattern' do
+
+      let(:name_pattern) { /match/ }
+
+      it 'matches' do
+        expect(subject.matches?(required_fixture)).to be_true
+      end
+    end
+
+    context "when the required fixture name doesn't match the name pattern" do
+
+      let(:name_pattern) { /miss/ }
+
+      it "doesn't match" do
+        expect(subject.matches?(establisher)).to be_false
+      end
+    end
+
+  end
+
   context 'being established' do
 
     context 'when the required fixture matches the name pattern' do
