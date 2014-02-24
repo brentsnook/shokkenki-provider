@@ -23,7 +23,7 @@ module Shokkenki
       def redeem_tickets
         @ticket_reader.read_from(ticket_location).each do |ticket|
           provider = providers[ticket.provider.name]
-          raise "No provided named '#{ticket.provider.name}' was found. Did you register one?" unless provider
+          raise "No provider named '#{ticket.provider.name}' was found. Did you register one?" unless provider
           ticket.verify_with provider
         end
       end

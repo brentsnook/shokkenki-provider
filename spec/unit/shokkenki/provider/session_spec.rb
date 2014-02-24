@@ -84,7 +84,7 @@ describe Shokkenki::Provider::Session do
       end
 
       it 'raises an error' do
-        expect { subject.redeem_tickets }.to raise_error("No provided named 'unknown_provider' was found. Did you register one?")
+        expect { subject.redeem_tickets }.to raise_error("No provider named 'unknown_provider' was found. Did you register one?")
       end
     end
   end
