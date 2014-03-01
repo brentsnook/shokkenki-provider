@@ -14,6 +14,8 @@ require_relative 'rspec/term/hash_term'
 require_relative 'rspec/term/string_term'
 require_relative 'rspec/term/number_term'
 require_relative 'rspec/term/regexp_term'
+require_relative 'rspec/term/date_term'
+require_relative 'rspec/term/date_time_term'
 require_relative 'rspec/term/json_paths_term'
 
 Shokkenki::Provider::Model::Ticket.send :include, Shokkenki::Provider::RSpec::Ticket
@@ -22,6 +24,8 @@ Shokkenki::Provider::Model::Interaction.send :include, Shokkenki::Provider::RSpe
 Shokkenki::Term::HashTerm.send :include, Shokkenki::Provider::RSpec::Term::HashTerm
 Shokkenki::Term::StringTerm.send :include, Shokkenki::Provider::RSpec::Term::StringTerm
 Shokkenki::Term::NumberTerm.send :include, Shokkenki::Provider::RSpec::Term::NumberTerm
+Shokkenki::Term::DateTerm.send :include, Shokkenki::Provider::RSpec::Term::DateTerm
+Shokkenki::Term::DateTimeTerm.send :include, Shokkenki::Provider::RSpec::Term::DateTimeTerm
 Shokkenki::Term::RegexpTerm.send :include, Shokkenki::Provider::RSpec::Term::RegexpTerm
 Shokkenki::Term::JsonPathsTerm.send :include, Shokkenki::Provider::RSpec::Term::JsonPathsTerm
 
