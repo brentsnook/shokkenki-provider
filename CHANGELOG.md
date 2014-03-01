@@ -1,3 +1,7 @@
+### 1.1.0 /
+
+* Support new Date and DateTime terms
+
 ### 1.0.1 / 2014-02-25
 
 ### 1.0.0 / 2014-02-24
