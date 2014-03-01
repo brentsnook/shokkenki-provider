@@ -29,7 +29,7 @@ describe Shokkenki::Provider::RSpec::Term::RegexpTerm do
       subject.verify_within example_context
     end
 
-    it 'names the assertion using the value of the term, including the extra crap from Regexp.to_s' do
+    it 'names the assertion using the value of the term' do
       expect(example_context).to have_received(:it).with('matches /99 problems/')
     end
 
