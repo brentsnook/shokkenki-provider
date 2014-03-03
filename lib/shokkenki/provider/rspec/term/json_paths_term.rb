@@ -10,13 +10,13 @@ module Shokkenki
             context.describe 'json' do
               term.value.each do |json_path, term|
                 describe json_path do
-
                   before(:each) do
+                    original_values = @actual_values
                     @actual_values = @actual_values.map do |value|
                       JsonPath.on(value, json_path.to_s)
                     end.flatten
 
-                    fail 'No matching values found' if @actual_values.empty?
+                    self.send(:fail, "Path \"#{json_path.to_s}\" not found in JSON #{original_values.join(', ')}") if @actual_values.empty?
                   end
 
                   term.verify_within self

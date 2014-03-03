@@ -63,12 +63,12 @@ describe Shokkenki::Provider::RSpec::Term::JsonPathsTerm do
 
       before do
         inner_context.instance_eval do
-          @actual_values = []
+          @actual_values = [%Q{{"x":"y"}}, %Q{{"a":"b"}}]
         end
       end
 
-      it 'fails' do
-        expect { subject.verify_within example_context }.to raise_error "No matching values found"
+      it 'fails with a message mentioning the path and actual values' do
+        expect{subject.verify_within example_context}.to raise_error(%Q{Path "$.first.second.third" not found in JSON {"x":"y"}, {"a":"b"}})
       end
     end
   end
