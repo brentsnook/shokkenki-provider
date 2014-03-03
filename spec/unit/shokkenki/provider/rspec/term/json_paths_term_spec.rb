@@ -71,5 +71,19 @@ describe Shokkenki::Provider::RSpec::Term::JsonPathsTerm do
         expect{subject.verify_within example_context}.to raise_error(%Q{Path "$.first.second.third" not found in JSON {"x":"y"}, {"a":"b"}})
       end
     end
+
+    context 'when parsing of the actual JSON fails' do
+      before do
+        inner_context.instance_eval do
+          @actual_values = [%Q{{"x":"y"}}, %Q{{"a":"b"}}]
+        end
+
+        allow(JsonPath).to receive(:on).and_raise("Original error")
+      end
+
+      it 'fails with a message detailing the failure and all of the JSON content' do
+        expect{subject.verify_within example_context}.to raise_error('Original error in JSON {"x":"y"}, {"a":"b"}')
+      end
+    end
   end
 end

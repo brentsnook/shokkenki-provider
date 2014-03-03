@@ -13,7 +13,11 @@ module Shokkenki
                   before(:each) do
                     original_values = @actual_values
                     @actual_values = @actual_values.map do |value|
-                      JsonPath.on(value, json_path.to_s)
+                      begin
+                        JsonPath.on(value, json_path.to_s)
+                      rescue Exception => e
+                        self.send(:fail, "#{e} in JSON #{original_values.join(', ')}")
+                      end
                     end.flatten
 
                     self.send(:fail, "Path \"#{json_path.to_s}\" not found in JSON #{original_values.join(', ')}") if @actual_values.empty?
