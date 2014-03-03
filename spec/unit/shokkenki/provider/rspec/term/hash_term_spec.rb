@@ -14,7 +14,7 @@ describe Shokkenki::Provider::RSpec::Term::HashTerm do
     let(:term) { double('term').as_null_object }
 
     before do
-      example_context.instance_eval { @actual_values = [{:value_name => 'value1'}] }
+      example_context.instance_eval { @actual_values = [{'value_name' => 'value1'}] }
       allow(example_context).to receive(:describe) do |&block|
         example_context.instance_eval &block
       end
@@ -33,8 +33,9 @@ describe Shokkenki::Provider::RSpec::Term::HashTerm do
       expect(term).to have_received(:verify_within).with(example_context)
     end
 
-    it 'translates actual values by selecting values that match the current key' do
+    it 'translates actual values by selecting values that match the current key indifferently' do
       expect(example_context.instance_variable_get(:@actual_values)).to eq(['value1'])
     end
+
   end
 end
