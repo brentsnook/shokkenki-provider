@@ -14,7 +14,6 @@ describe Shokkenki::Provider::RSpec::Term::HashTerm do
     let(:term) { double('term').as_null_object }
 
     before do
-      example_context.instance_eval { @actual_values = [{'value_name' => 'value1'}] }
       allow(example_context).to receive(:describe) do |&block|
         example_context.instance_eval &block
       end
@@ -22,19 +21,35 @@ describe Shokkenki::Provider::RSpec::Term::HashTerm do
       allow(example_context).to receive(:before) do |&block|
         example_context.instance_eval &block
       end
-      subject.verify_within example_context
     end
 
-    it 'describes each key' do
-      expect(example_context).to have_received(:describe).with(:value_name)
+    context 'when there are actual values' do
+      before do
+        example_context.instance_eval { @actual_values = [{'value_name' => 'value1'}] }
+        subject.verify_within example_context
+      end
+
+      it 'describes each key' do
+        expect(example_context).to have_received(:describe).with(:value_name)
+      end
+
+      it 'verifies each term within the current context' do
+        expect(term).to have_received(:verify_within).with(example_context)
+      end
+
+      it 'translates actual values by selecting values that match the current key indifferently' do
+        expect(example_context.instance_variable_get(:@actual_values)).to eq(['value1'])
+      end
     end
 
-    it 'verifies each term within the current context' do
-      expect(term).to have_received(:verify_within).with(example_context)
-    end
+    context 'when a value could not be extracted' do
+      before do
+        example_context.instance_eval { @actual_values = [{:something_else => 'value1'}, {:x => 'y'}] }
+      end
 
-    it 'translates actual values by selecting values that match the current key indifferently' do
-      expect(example_context.instance_variable_get(:@actual_values)).to eq(['value1'])
+      it "fails with a message" do
+        expect{subject.verify_within example_context}.to raise_error(%Q{No value for "value_name" found in {:something_else=>"value1"}, {:x=>"y"}})
+      end
     end
 
   end

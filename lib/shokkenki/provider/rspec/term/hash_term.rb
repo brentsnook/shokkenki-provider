@@ -8,7 +8,13 @@ module Shokkenki
           def verify_within context
             value.each do |name, term|
               context.describe name do
-                before { @actual_values = @actual_values.map{ |value| value.with_indifferent_access[name] } }
+                before do
+                  @actual_values = @actual_values.map do |value|
+                    extracted_value = value.with_indifferent_access[name]
+                    self.send(:fail, %Q{No value for "#{name}" found in #{@actual_values.join(', ')}}) unless extracted_value
+                    extracted_value
+                  end
+                end
 
                 term.verify_within self
               end
